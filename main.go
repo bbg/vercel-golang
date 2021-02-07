@@ -1,10 +1,24 @@
 package handler
 
 import (
-  "fmt"
+  "encoding/json"
   "net/http"
 )
 
+type Profile struct {
+  Name    string
+  Hobbies []string
+}
+
 func Handler(w http.ResponseWriter, r *http.Request) {
-  fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
+  profile := Profile{"Alex", []string{"snowboarding", "programming"}}
+
+  js, err := json.Marshal(profile)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  w.Header().Set("Content-Type", "application/json")
+  w.Write(js)
 }
