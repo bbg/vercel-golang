@@ -1,4 +1,4 @@
-package handler
+package main
 
 import (
   "encoding/json"
@@ -10,7 +10,12 @@ type Profile struct {
   Hobbies []string
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func main() {
+  http.HandleFunc("/", foo)
+  http.ListenAndServe(":3000", nil)
+}
+
+func foo(w http.ResponseWriter, r *http.Request) {
   profile := Profile{"Alex", []string{"snowboarding", "programming"}}
 
   js, err := json.Marshal(profile)
