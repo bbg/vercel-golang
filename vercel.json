@@ -1,0 +1,9 @@
+
+
+{
+  "build": {
+    "env": {
+      "GIT_CREDENTIALS": "https://batuhangoksu:0054eb2d007845ec5194ea410ba9dc57ee68fa42@github.com"
+    }
+  }
+}
